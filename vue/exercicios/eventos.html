@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p>
+            <label>{{ contador }}</label> <br>
+            <button v-on:click="add">+1</button> <!--Chama função que incrementa 1 numero-->
+            <button @click="contador -=2">-2</button> <!--Versão simplificada do v-on que contem 
+                                                        expressão que decrementa 2 numeros-->                  
+        </p>
+        <hr>
+        <p @mousemove="atualizaPosicao"> <!--Conta as corrdenadas dentro do paragrafo-->
+            Coordenadas: {{x}} e {{y}}
+            <br>
+            <span @mousemove.stop>Para de contar coordenadas</span> <!--Para de contar cordenadas quando o ouse fica em cima-->
+        </p>
+        <input type="text" @keyup.enter="alerta" v-model="input" >
+
+    </div>
+    <script>
+        new Vue ({
+            el: "#app",
+            data: {
+                x: 0,
+                y: 0,
+                contador: 0,
+                input: "Clique aqui, depois no enter!!"
+            },
+            methods: {
+                add(){
+                this.contador++
+                },
+                atualizaPosicao(e){
+                    this.x = e.clientX
+                    this.y = e.clientY
+                },
+                alerta() {
+                    alert("Você clicou no enter!! Parabens!!")
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>

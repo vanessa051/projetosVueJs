@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Binding</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+<div id="app">
+    <p>{{ link }}</p>
+    <p><a href="{{ link }}">Canal??</a></p> <!--Não funciona porque não tem v-bind-->
+    <p><a v-bind:href="link">Canal</a></p> <!--Esse funciona porque tem-->
+    <p><a :href="link">Oto Canal</a></p> <!--Versão simplificada do v-bind-->
+
+    <hr>
+    <p>
+        <input type="text" v-model="nome"><br>
+        <span>Texto digitado: {{ nome }}</span>
+    </p>
+
+</div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                nome: "",
+                link: "https://www.youtube.com/channel/UCcMcmtNSSQECjKsJA1XH5MQ" 
+            },
+            watch: { //responde a funções que são chamadas assim que um atributo declarado no data for alterado
+                nome(novoValor){
+                    console.log(novoValor.toUpperCase())
+                }
+            }
+        })
+    </script>
+</body>
+</html>
